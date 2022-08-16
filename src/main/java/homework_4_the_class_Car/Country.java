@@ -8,9 +8,9 @@ import lombok.Getter;
 
 public class Country {
     String countryName;
-     char countrySign;
+    char countrySign;
 
-     public String toString(){
-         return countryName + " - " + countrySign;
-     }
+    public String toString() {
+        return countryName + " - " + countrySign;
+    }
 }

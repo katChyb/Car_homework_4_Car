@@ -3,6 +3,8 @@ package homework_4_the_class_Car;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Arrays.asList;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -13,24 +15,25 @@ public class Main {
         Country countryNetherlands = new Country("Netherlands", 'N');
         Country countryKoreaSouth = new Country("South Korea", 'K');
 
+        List<Market> markets = new ArrayList<>();
+        markets.add(new Market("Business", new ArrayList<>(asList(countryPoland, countryGermany, countryNetherlands))));
+        markets.add(new Market("Cargo", new ArrayList<>(asList(countryChina, countryKoreaSouth, countryNetherlands))));
+        markets.add(new Market("Transport", new ArrayList<>(asList(countryGermany, countryKoreaSouth, countryNetherlands))));
+        markets.add(new Market("Taxi", new ArrayList<>(asList(countryGermany, countryPoland, countryNetherlands))));
+        markets.add(new Market("Bus", new ArrayList<>(asList(countryGermany, countryPoland, countryChina))));
 
-        Market marketBusiness = new Market ("Buisness", List.of(countryPoland,countryGermany, countryNetherlands));
-        Market marketCargo = new Market ("Cargo", List.of(countryChina,countryKoreaSouth, countryNetherlands));
-        Market marketTransport = new Market ("Transport", List.of(countryGermany,countryKoreaSouth, countryNetherlands));
-        Market marketTaxi = new Market ("Taxi", List.of(countryGermany,countryPoland, countryNetherlands));
-        Market marketBus = new Market ("Bus", List.of(countryGermany,countryPoland, countryChina));
 
-
-        Dimension dimension1 = new Dimension(75,145,240);
-        Dimension dimension2 = new Dimension(80,165,280);
-        Dimension dimension3 = new Dimension(100,185,260);
-        Dimension dimension4 = new Dimension(90,190,200);
-        Dimension dimension5 = new Dimension(85,170,190);
-        Dimension dimension6 = new Dimension(120,150,250);
-        Dimension dimension7 = new Dimension(120,130,250);
-        Dimension dimension8 = new Dimension(130,100,310);
-        Dimension dimension9 = new Dimension(60,90,180);
-        Dimension dimension10 = new Dimension(65,185,240);
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension(12, 15, 560));
+        dimensions.add(new Dimension(75, 145, 240));
+        dimensions.add(new Dimension(80, 165, 280));
+        dimensions.add(new Dimension(100, 185, 260));
+        dimensions.add(new Dimension(90, 190, 200));
+        dimensions.add(new Dimension(85, 170, 190));
+        dimensions.add(new Dimension(120, 150, 250));
+        dimensions.add(new Dimension(120, 130, 250));
+        dimensions.add(new Dimension(130, 100, 310));
+        dimensions.add(new Dimension(60, 90, 180));
 
 
         Producent producent1 = new Producent("Corolla", "Toyota");
@@ -46,30 +49,20 @@ public class Main {
 
 
         List<Car> cars = new ArrayList<>();
-        cars.add(new Car(producent1, false, marketBusiness, "Standard", List.of(dimension1)));
-        cars.add(new Car(producent2, true, marketTaxi, "Premium", List.of(dimension8)));
-        cars.add(new Car(producent3, false, marketTransport, "Premium", List.of(dimension8)));
-        cars.add(new Car(producent3, false, marketTaxi, "Premium", List.of(dimension1)));
-        cars.add(new Car(producent10, false, marketCargo, "Standard", List.of(dimension1)));
-        cars.add(new Car(producent7, true, marketBus, "Medium", List.of(dimension10)));
-        cars.add(new Car(producent5, true, marketBusiness, "Premium", List.of(dimension4)));
-        cars.add(new Car(producent4, true, marketTransport, "Medium", List.of(dimension6)));
-        cars.add(new Car(producent6, true, marketTransport, "Medium", List.of(dimension8)));
-        cars.add(new Car(producent2, false, marketTransport, "Medium", List.of(dimension8)));
+        cars.add(new Car(producent1, false, markets.get(0), "Standard", dimensions.get(0)));
+        cars.add(new Car(producent2, true, markets.get(3), "Premium", dimensions.get(8)));
+        cars.add(new Car(producent3, false, markets.get(2), "Premium", dimensions.get(4)));
+        cars.add(new Car(producent3, false, markets.get(4), "Premium", dimensions.get(3)));
+        cars.add(new Car(producent10, false, markets.get(1), "Standard", dimensions.get(9)));
+        cars.add(new Car(producent7, true, markets.get(3), "Medium", dimensions.get(2)));
+        cars.add(new Car(producent5, true, markets.get(1), "Premium", dimensions.get(1)));
+        cars.add(new Car(producent4, true, markets.get(2), "Medium", dimensions.get(6)));
+        cars.add(new Car(producent6, true, markets.get(4), "Medium", dimensions.get(5)));
+        cars.add(new Car(producent2, false, markets.get(1), "Medium", dimensions.get(8)));
 
 
-       int i=0;
-        for (Car c: cars) {
-            if (c.getProducent().equals(producent2))  {  // get producent BMW
-                // is auto gear
-                if (c.isAutomaticGear == true) {
-                    i++;}
-            }
-
-      }
-        System.out.println(i);
+        Car.searchCar(cars, markets);
 
     }
-
 
 }

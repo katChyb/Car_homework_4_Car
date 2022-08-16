@@ -14,13 +14,4 @@ public class Market {
     private List<Country> countries;
 
 
-
- /*
-    public Market(String name, Country country) {
-        this.name = name;
-        this.country = country;
-        this.countries;
-    }
-*/
-
 }
